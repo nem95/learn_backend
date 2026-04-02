@@ -1,0 +1,163 @@
+📚 FULLSTACK BACKEND LEARNING PATH
+═════════════════════════════════════════════════════════════════
+
+START_HERE.md
+    ↓
+FULLSTACK_GUIDE.md (Vue d'ensemble)
+    ↓
+TICKETS_GUIDE.md (Comment utiliser les tickets)
+    ↓
+═════════════════════════════════════════════════════════════════
+
+PHASE 1: Express Core (Semaines 1-3)
+├── phase-1/README.md
+└── phase-1/tickets/
+    ├── INDEX.md ..................... 11 tickets
+    ├── P1-01-setup-express.md
+    ├── P1-02-routes-base.md
+    ├── P1-03-routes-detail.md
+    ├── P1-04-validation-zod.md
+    ├── P1-05-http-codes.md
+    ├── P1-06-error-handling.md
+    ├── P1-07-setup-postgres.md
+    ├── P1-08-schema-prisma.md
+    ├── P1-09-migrations.md
+    ├── P1-10-remplacer-db.md
+    └── P1-11-comments.md
+        ✅ Projet #1 : Blog API in-memory
+        ✅ Projet #2 : Blog API + PostgreSQL
+
+PHASE 2: Auth, Tests, Cache (Semaines 4-6)
+├── phase-2/README.md
+└── phase-2/tickets/
+    ├── INDEX.md ..................... 17 tickets
+    ├── P2-01 à P2-07 (Auth)
+    ├── P2-08 à P2-11 (Tests)
+    └── P2-12 à P2-17 (Cache + Rate Limiting)
+        ✅ Projet #3 : Blog API avec Auth
+        ✅ Projet #4 : Blog API avec Tests
+        ✅ Projet #5 : Blog API robuste
+
+PHASE 3: Queues & Jobs (Semaines 7-8)
+├── phase-3/README.md
+└── phase-3/tickets/
+    ├── INDEX.md ..................... 8 tickets
+    └── P3-01 à P3-08 (Queues, Email, Export)
+        ✅ Projet #6 : Blog API avec notifications
+
+PHASE 4: NestJS + Microservices (Semaines 9-13)
+├── phase-4/README.md
+└── phase-4/tickets/
+    ├── INDEX.md ..................... 20 tickets
+    ├── P4-01 à P4-06 (Transition NestJS)
+    ├── P4-07 à P4-14 (Microservices)
+    └── P4-15 à P4-20 (Docker + CI/CD + Deploy)
+        ✅ Projet #7 : Monolithe NestJS
+        ✅ Projet #8 : 5 Microservices
+        ✅ Projet #9 : Production-ready
+
+═════════════════════════════════════════════════════════════════
+
+RÉSUMÉ DES PROJETS
+═════════════════════════════════════════════════════════════════
+
+Projet #1 : Blog API in-memory
+  - Express + TypeScript
+  - Routes CRUD basiques
+  - Stockage en mémoire
+  - Validation avec Zod
+  - Gestion d'erreurs
+
+Projet #2 : Blog API + PostgreSQL
+  - Prisma ORM
+  - Relations User-Post-Comment
+  - Migrations
+  - Persistence en BD
+
+Projet #3 : Blog API avec Auth
+  - JWT tokens
+  - bcrypt pour les passwords
+  - Middleware d'authentification
+  - Permissions (admin/user)
+  - Refresh token flow
+
+Projet #4 : Blog API avec Tests
+  - Jest + Supertest
+  - Tests unitaires (services)
+  - Tests d'intégration (routes)
+  - Coverage > 70%
+
+Projet #5 : Blog API robuste
+  - Redis cache
+  - Rate limiting
+  - Pagination
+  - Performance optimisée
+
+Projet #6 : Blog API avec notifications
+  - Bull queues
+  - Email asynchrone (Nodemailer)
+  - Jobs background
+  - Retry logic
+
+Projet #7 : Monolithe NestJS
+  - Refactor Express → NestJS
+  - Modules, Controllers, Services
+  - Guards, Pipes, Filters
+  - Bull avec NestJS
+
+Projet #8 : 5 Microservices
+  - API Gateway
+  - Auth Service
+  - Posts Service
+  - Users Service
+  - Notifications Service
+  - Communication TCP/Redis
+
+Projet #9 : Production-ready
+  - Docker par service
+  - Docker Compose
+  - GitHub Actions CI/CD
+  - Health checks
+  - Structured logging
+  - Déployé sur Railway/Render
+
+═════════════════════════════════════════════════════════════════
+
+TECHNOLOGIES APPRISES
+═════════════════════════════════════════════════════════════════
+
+Backend:
+  ✅ Node.js + Express.js
+  ✅ TypeScript
+  ✅ PostgreSQL
+  ✅ Prisma ORM
+  ✅ JWT + bcrypt
+  ✅ Redis + Bull queues
+  ✅ NestJS
+  ✅ Microservices architecture
+
+Testing & Quality:
+  ✅ Jest
+  ✅ Supertest
+  ✅ Code coverage
+
+DevOps:
+  ✅ Docker
+  ✅ Docker Compose
+  ✅ GitHub Actions
+  ✅ CI/CD basics
+  ✅ Deployment (Railway/Render)
+
+═════════════════════════════════════════════════════════════════
+
+TOTAL: 56 TICKETS À COMPLÉTER
+  Phase 1: 11 tickets (3 semaines)
+  Phase 2: 17 tickets (3 semaines)
+  Phase 3: 8 tickets (2 semaines)
+  Phase 4: 20 tickets (5 semaines)
+
+DURÉE ESTIMÉE: 13 semaines (temps complet)
+
+═════════════════════════════════════════════════════════════════
+
+BON COURAGE! 🚀
