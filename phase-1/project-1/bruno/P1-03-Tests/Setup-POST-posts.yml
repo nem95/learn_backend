@@ -18,6 +18,9 @@ http:
       }
 
 runtime:
+  variables:
+    - name: baseUrl
+      value: http://localhost:3000
   scripts:
     - type: after-response
       code: |-
@@ -37,3 +40,9 @@ runtime:
         test("Post has title", function() {
           expect(res.body.title).to.equal("Hello");
         });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

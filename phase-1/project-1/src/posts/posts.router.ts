@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import { addPost, deletePost, getPost, listPosts, updatePost } from './posts.service';
+import { validateSchema } from '../utils/validateSchema';
+import { CreatePostSchema, IDSchema, UpdatePostSchema } from './posts.schema';
 
 const postsRouter = express.Router()
 
@@ -9,7 +11,7 @@ postsRouter.get('/', (_req: Request, res: Response) => {
 	res.json(posts);
 });
 
-postsRouter.get('/:id', (req: Request, res: Response) => {
+postsRouter.get('/:id', validateSchema(IDSchema), (req: Request, res: Response) => {
 	const id = req.params.id;
 
 	try {
@@ -21,7 +23,7 @@ postsRouter.get('/:id', (req: Request, res: Response) => {
 	}
 });
 
-postsRouter.post('/', (req: Request, res: Response) => {
+postsRouter.post('/', validateSchema(CreatePostSchema) ,(req: Request, res: Response) => {
 	const data = req.body;
 	
 	try {
@@ -34,7 +36,7 @@ postsRouter.post('/', (req: Request, res: Response) => {
 	}
 });
 
-postsRouter.patch('/:id', (req: Request, res: Response) => {
+postsRouter.patch('/:id', validateSchema(UpdatePostSchema), (req: Request, res: Response) => {
 	const data = req.body;
 	const id = req.params.id;
 	try {
