@@ -1,0 +1,39 @@
+info:
+  name: Setup - POST /posts
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/posts"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Hello",
+        "content": "World"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.status === 200) {
+          bru.setVar("postId", res.body.id);
+        }
+    - type: tests
+      code: |-
+        test("Status is 200", function() {
+          expect(res.status).to.equal(200);
+        });
+
+        test("Post has id", function() {
+          expect(res.body).to.have.property("id");
+        });
+
+        test("Post has title", function() {
+          expect(res.body.title).to.equal("Hello");
+        });

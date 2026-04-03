@@ -1,0 +1,23 @@
+info:
+  name: Test 5 - DELETE /posts/1
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/posts/{{postId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 200", function() {
+          expect(res.status).to.equal(200);
+        });
+
+        test("Response has message", function() {
+          expect(res.body).to.have.property("message");
+        });
