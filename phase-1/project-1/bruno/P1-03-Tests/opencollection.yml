@@ -1,0 +1,5 @@
+opencollection: 1.0.0
+
+info:
+  name: P1 Routes Détail Tests
+  description: Test suite for POST detail routes (GET, PATCH, DELETE)

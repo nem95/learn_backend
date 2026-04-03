@@ -1,0 +1,19 @@
+info:
+  name: Test 7 - GET /posts/1 (post supprimé)
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: "{{baseUrl}}/posts/{{postId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 500 (post not found)", function() {
+          expect(res.status).to.equal(500);
+        });
