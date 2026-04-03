@@ -10,7 +10,6 @@ export const listPosts = () => {
 
 export const getPost = (id: number) => {
 	const post = POSTS.find(post => post.id === id)
-	console.log(post);
 
 	if (post) {
 		return post;
@@ -28,8 +27,7 @@ export const addPost = (post: Post) => {
 	};
 
 	POSTS.push(newPost);
-	console.log("POSTS", POSTS);
-	
+
 	nextId = nextId + 1;
 	return newPost;
 };
@@ -40,7 +38,7 @@ export const updatePost = (id: number, post: Post) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
-    throw new Error("Post not found"); 
+		throw new Error("Post not found");
 	}
 
 	const newPosts = POSTS.map(currentPost => {
@@ -66,7 +64,7 @@ export const deletePost = (id: number) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
-    throw new Error("Post not found"); 
+		throw new Error("Post not found");
 	}
 
 	POSTS.splice(postIndex, 1);
