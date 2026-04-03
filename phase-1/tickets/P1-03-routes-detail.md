@@ -103,3 +103,32 @@ curl http://localhost:3000/posts
 curl http://localhost:3000/posts/1
 # Response: erreur (post not found)
 ```
+
+---
+
+## ✅ TICKET COMPLÉTÉ - Code Review PASSED
+
+**Date:** 2026-04-03  
+**Reviewer:** Claude Code  
+
+### Vérifications effectuées:
+- ✅ Route `GET /posts/:id` retourne un post spécifique
+- ✅ Route `GET /posts/:id` retourne une erreur si ID n'existe pas (500 status)
+- ✅ Route `PATCH /posts/:id` modifie un post
+- ✅ Route `PATCH /posts/:id` met à jour uniquement les champs fournis dans le body
+- ✅ Route `DELETE /posts/:id` supprime un post
+- ✅ `GET /posts` n'affiche plus les posts supprimés
+- ✅ Routes enregistrées avec `router.get()`, `router.patch()`, `router.delete()`
+- ✅ `req.params.id` extrait et converti en nombre avec `Number()`
+- ✅ Try-catch sur toutes les routes détail
+- ✅ Réponse JSON structurée pour DELETE : `{ message: "..." }`
+- ✅ console.log() nettoyés (fonction getPost et addPost)
+
+### Code Quality:
+- ✅ Indentation consistante (tabs)
+- ✅ Gestion d'erreur implémentée (.status(500).json({}))
+- ✅ Séparation logique service/router respectée
+- ✅ Typage TypeScript correct (Request, Response, Post interface)
+- ✅ Noms de variables explicites
+
+**Statut:** ✅ READY FOR NEXT TICKET (P1-04)
