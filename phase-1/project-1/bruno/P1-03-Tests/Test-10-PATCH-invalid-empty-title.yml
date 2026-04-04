@@ -1,0 +1,30 @@
+info:
+  name: Test 10 - PATCH /posts/1 invalid (titre vide)
+  type: http
+  seq: 11
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/posts/{{postId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": ""
+      }
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 400 (validation error)", function() {
+          expect(res.status).to.equal(400);
+        });
+
+        test("Response has errors array", function() {
+          expect(res.body).to.have.property("errors");
+          expect(res.body.errors).to.be.an("array");
+        });

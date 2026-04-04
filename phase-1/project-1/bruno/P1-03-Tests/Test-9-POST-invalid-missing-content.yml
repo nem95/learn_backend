@@ -1,0 +1,30 @@
+info:
+  name: Test 9 - POST /posts invalid (contenu manquant)
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{baseUrl}}/posts"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Hello"
+      }
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 400 (validation error)", function() {
+          expect(res.status).to.equal(400);
+        });
+
+        test("Response has errors array", function() {
+          expect(res.body).to.have.property("errors");
+          expect(res.body.errors).to.be.an("array");
+        });

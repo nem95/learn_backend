@@ -29,3 +29,9 @@ runtime:
         test("Post has id", function() {
           expect(res.body).to.have.property("id");
         });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
