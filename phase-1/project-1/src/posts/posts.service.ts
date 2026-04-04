@@ -32,8 +32,6 @@ export const addPost = (post: Post) => {
 	return newPost;
 };
 
-
-
 export const updatePost = (id: number, post: Post) => {
 	const postIndex = findPostIndex(id);
 
@@ -55,7 +53,6 @@ export const updatePost = (id: number, post: Post) => {
 		}
 	})
 
-
 	POSTS = newPosts;
 	return POSTS[postIndex];
 };
@@ -68,6 +65,5 @@ export const deletePost = (id: number) => {
 	}
 
 	POSTS.splice(postIndex, 1);
-
 	return POSTS;
 };
