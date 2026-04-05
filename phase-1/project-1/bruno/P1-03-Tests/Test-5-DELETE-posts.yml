@@ -11,13 +11,18 @@ http:
       value: application/json
 
 runtime:
+  variables:
+    - name: postId
+      value: "1"
   scripts:
     - type: tests
       code: |-
-        test("Status is 200", function() {
-          expect(res.status).to.equal(200);
+        test("Status is 204 (No Content)", function() {
+          expect(res.status).to.equal(204);
         });
 
-        test("Response has message", function() {
-          expect(res.body).to.have.property("message");
-        });
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

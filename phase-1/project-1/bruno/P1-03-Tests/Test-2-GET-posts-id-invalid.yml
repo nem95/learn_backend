@@ -14,6 +14,6 @@ runtime:
   scripts:
     - type: tests
       code: |-
-        test("Status is 500 (not found)", function() {
-          expect(res.status).to.equal(500);
+        test("Status is 404 (Not Found)", function() {
+          expect(res.status).to.equal(404);
         });

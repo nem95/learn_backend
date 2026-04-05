@@ -17,6 +17,9 @@ http:
       }
 
 runtime:
+  variables:
+    - name: postId
+      value: "1"
   scripts:
     - type: tests
       code: |-
@@ -31,3 +34,9 @@ runtime:
         test("Content is unchanged", function() {
           expect(res.body.content).to.equal("World");
         });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
