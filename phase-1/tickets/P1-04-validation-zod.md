@@ -24,16 +24,16 @@ Ajouter la validation des inputs avec Zod. Les requêtes invalides doivent être
 
 ## Acceptance Criteria
 
-- [ ] Fichier `src/posts/posts.schema.ts` créé avec schémas Zod
-- [ ] Schéma `CreatePostSchema` : title (string, min 1), content (string, min 1)
-- [ ] Schéma `UpdatePostSchema` : title (optional), content (optional)
-- [ ] Schéma `IDSchema` : id (number, positive)
-- [ ] Route `POST /posts` valide le body avec `CreatePostSchema`
-- [ ] Route `PATCH /posts/:id` valide le body avec `UpdatePostSchema`
-- [ ] Route `GET /posts/:id` valide l'ID avec `IDSchema`
-- [ ] Requête invalide retourne une erreur sans créer/modifier le post
-- [ ] Messages d'erreur Zod clairs (ou personnalisés)
-- [ ] Génération de types TypeScript depuis Zod : `type CreatePost = z.infer<typeof CreatePostSchema>`
+- [x] Fichier `src/posts/posts.schema.ts` créé avec schémas Zod
+- [x] Schéma `CreatePostSchema` : title (string, min 1), content (string, min 1)
+- [x] Schéma `UpdatePostSchema` : title (optional), content (optional)
+- [x] Schéma `IDSchema` : id (number, positive)
+- [x] Route `POST /posts` valide le body avec `CreatePostSchema`
+- [x] Route `PATCH /posts/:id` valide le body avec `UpdatePostSchema`
+- [x] Route `GET /posts/:id` valide l'ID avec `IDSchema`
+- [x] Requête invalide retourne une erreur sans créer/modifier le post
+- [x] Messages d'erreur Zod clairs (ou personnalisés)
+- [x] Génération de types TypeScript depuis Zod : `type CreatePost = z.infer<typeof CreatePostSchema>`
 
 ---
 

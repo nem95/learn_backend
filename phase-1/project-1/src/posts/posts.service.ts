@@ -1,5 +1,6 @@
 import { Post } from '../types';
 import { findPostIndex } from '../utils/posts';
+import { CreatePost, UpdatePost } from './posts.schema';
 
 export let POSTS: Post[] = [];
 let nextId = 1;
@@ -18,7 +19,7 @@ export const getPost = (id: number) => {
 	throw new Error("erreur");
 };
 
-export const addPost = (post: Post) => {
+export const addPost = (post: CreatePost) => {
 	const newPost = {
 		id: nextId,
 		title: post.title,
@@ -32,9 +33,7 @@ export const addPost = (post: Post) => {
 	return newPost;
 };
 
-
-
-export const updatePost = (id: number, post: Post) => {
+export const updatePost = (id: number, post: UpdatePost) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
@@ -55,7 +54,6 @@ export const updatePost = (id: number, post: Post) => {
 		}
 	})
 
-
 	POSTS = newPosts;
 	return POSTS[postIndex];
 };
@@ -68,6 +66,5 @@ export const deletePost = (id: number) => {
 	}
 
 	POSTS.splice(postIndex, 1);
-
 	return POSTS;
 };

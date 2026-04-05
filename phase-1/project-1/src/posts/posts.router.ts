@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import { addPost, deletePost, getPost, listPosts, updatePost } from './posts.service';
+import { validateBodySchema, validateParamsSchema } from '../utils/validateSchema';
+import { CreatePostSchema, IDSchema, UpdatePostSchema } from './posts.schema';
 
 const postsRouter = express.Router()
 
@@ -9,8 +11,8 @@ postsRouter.get('/', (_req: Request, res: Response) => {
 	res.json(posts);
 });
 
-postsRouter.get('/:id', (req: Request, res: Response) => {
-	const id = req.params.id;
+postsRouter.get('/:id', validateParamsSchema(IDSchema), (req: Request, res: Response) => {
+	const { id } = req.params;
 
 	try {
 		const posts = getPost(Number(id))
@@ -21,7 +23,7 @@ postsRouter.get('/:id', (req: Request, res: Response) => {
 	}
 });
 
-postsRouter.post('/', (req: Request, res: Response) => {
+postsRouter.post('/', validateBodySchema(CreatePostSchema) ,(req: Request, res: Response) => {
 	const data = req.body;
 	
 	try {
@@ -34,21 +36,21 @@ postsRouter.post('/', (req: Request, res: Response) => {
 	}
 });
 
-postsRouter.patch('/:id', (req: Request, res: Response) => {
+postsRouter.patch('/:id', validateParamsSchema(IDSchema), validateBodySchema(UpdatePostSchema), (req: Request, res: Response) => {
 	const data = req.body;
-	const id = req.params.id;
+	const { id } = req.params;
 	try {
-		const createPost = updatePost(Number(id), data)
+		const updatedPost = updatePost(Number(id), data)
 
-		res.json(createPost);
+		res.json(updatedPost);
 	} catch (error) {
 		console.error(error)
   	res.status(500).json({})
 	}
 });
 
-postsRouter.delete('/:id', (req: Request, res: Response) => {
-	const id = req.params.id;
+postsRouter.delete('/:id', validateParamsSchema(IDSchema), (req: Request, res: Response) => {
+const { id } = req.params;
 
 	try {
 		deletePost(Number(id))

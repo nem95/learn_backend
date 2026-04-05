@@ -1,0 +1,19 @@
+info:
+  name: Test 11 - GET /posts/abc invalid (ID non-numérique)
+  type: http
+  seq: 12
+
+http:
+  method: GET
+  url: "{{baseUrl}}/posts/abc"
+  headers:
+    - name: Content-Type
+      value: application/json
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 400 or 500 (validation/coerce error)", function() {
+          expect([400, 500]).to.include(res.status);
+        });
