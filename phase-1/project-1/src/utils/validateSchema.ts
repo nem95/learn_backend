@@ -31,7 +31,7 @@ export const validateParamsSchema = (schema: ZodType) => (req: Request, res: Res
     });
   }
   
-  req.params = result.data;
-
+ req.params = result.data as unknown as Request['params'];
+ 
   next();
 };

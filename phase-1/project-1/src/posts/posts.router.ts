@@ -12,7 +12,7 @@ postsRouter.get('/', (_req: Request, res: Response) => {
 });
 
 postsRouter.get('/:id', validateParamsSchema(IDSchema), (req: Request, res: Response) => {
-	const id = req.params.id;
+	const { id } = req.params;
 
 	try {
 		const posts = getPost(Number(id))
@@ -36,9 +36,9 @@ postsRouter.post('/', validateBodySchema(CreatePostSchema) ,(req: Request, res: 
 	}
 });
 
-postsRouter.patch('/:id', validateBodySchema(UpdatePostSchema), (req: Request, res: Response) => {
+postsRouter.patch('/:id', validateParamsSchema(IDSchema), validateBodySchema(UpdatePostSchema), (req: Request, res: Response) => {
 	const data = req.body;
-	const id = req.params.id;
+	const { id } = req.params;
 	try {
 		const updatedPost = updatePost(Number(id), data)
 
@@ -50,7 +50,7 @@ postsRouter.patch('/:id', validateBodySchema(UpdatePostSchema), (req: Request, r
 });
 
 postsRouter.delete('/:id', validateParamsSchema(IDSchema), (req: Request, res: Response) => {
-	const id = req.params.id;
+const { id } = req.params;
 
 	try {
 		deletePost(Number(id))
