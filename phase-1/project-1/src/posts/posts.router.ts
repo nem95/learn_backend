@@ -3,7 +3,20 @@ import { addPost, deletePost, getPost, listPosts, updatePost } from './posts.ser
 import { validateBodySchema, validateParamsSchema } from '../utils/validateSchema';
 import { CreatePostSchema, IDSchema, UpdatePostSchema } from './posts.schema';
 
-const postsRouter = express.Router()
+const postsRouter = express.Router();
+
+const catchError = (err: Error, code?: number) => {
+	const statusCode = code || 500;
+	const status = err.message === "NOT_FOUND" ? 404 : statusCode;
+	const message = err.message === "NOT_FOUND" ? "Post not found" : `Error just happend: ${err}`;
+
+	console.error(err);
+
+	return { 
+		status,
+		message,
+	}
+}
 
 postsRouter.get('/', (_req: Request, res: Response) => {
 	const posts = listPosts()
@@ -18,8 +31,10 @@ postsRouter.get('/:id', validateParamsSchema(IDSchema), (req: Request, res: Resp
 		const posts = getPost(Number(id))
 		res.json(posts);
 	} catch (error) {
-		console.error(error)
-  	res.status(500).json({})
+		const err = error instanceof Error ? error : new Error(String(error));
+		const { status, message } = catchError(err);
+
+		res.status(status).json({ message})
 	}
 });
 
@@ -29,10 +44,12 @@ postsRouter.post('/', validateBodySchema(CreatePostSchema) ,(req: Request, res: 
 	try {
 		const createPost = addPost(data)
 
-		res.json(createPost);
+		res.status(201).json(createPost);
 	} catch (error) {
-		console.error(error)
-  	res.status(500).json({})
+		const err = error instanceof Error ? error : new Error(String(error));
+		const { status, message } = catchError(err, 400 );
+
+		res.status(status).json({ message })
 	}
 });
 
@@ -44,8 +61,10 @@ postsRouter.patch('/:id', validateParamsSchema(IDSchema), validateBodySchema(Upd
 
 		res.json(updatedPost);
 	} catch (error) {
-		console.error(error)
-  	res.status(500).json({})
+		const err = error instanceof Error ? error : new Error(String(error));
+		const { status, message } = catchError(err, 400 );
+
+		res.status(status).json({ message })
 	}
 });
 
@@ -55,10 +74,12 @@ const { id } = req.params;
 	try {
 		deletePost(Number(id))
 
-		res.json({message: `post id: ${id} deleted successfully` });
+		res.status(204).json({message: `post id: ${id} deleted successfully` });
 	} catch (error) {
-		console.error(error)
-  	res.status(500).json({})
+		const err = error instanceof Error ? error : new Error(String(error));
+		const { status, message } = catchError(err, 400 );
+
+		res.status(status).json({ message })
 	}
 });
 export { postsRouter };
