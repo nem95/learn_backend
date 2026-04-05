@@ -74,7 +74,7 @@ const { id } = req.params;
 	try {
 		deletePost(Number(id))
 
-		res.status(204).json({message: `post id: ${id} deleted successfully` });
+		res.status(204).json();
 	} catch (error) {
 		const err = error instanceof Error ? error : new Error(String(error));
 		const { status, message } = catchError(err, 400 );
