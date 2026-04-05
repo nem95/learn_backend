@@ -3,7 +3,9 @@ import { findPostIndex } from '../utils/posts';
 import { CreatePost, UpdatePost } from './posts.schema';
 
 export let POSTS: Post[] = [];
+
 let nextId = 1;
+const NOT_FOUND = "NOT_FOUND";
 
 export const listPosts = () => {
 	return POSTS
@@ -16,7 +18,7 @@ export const getPost = (id: number) => {
 		return post;
 	}
 
-	throw new Error("erreur");
+	throw new Error(NOT_FOUND);
 };
 
 export const addPost = (post: CreatePost) => {
@@ -37,7 +39,7 @@ export const updatePost = (id: number, post: UpdatePost) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
-		throw new Error("Post not found");
+		throw new Error(NOT_FOUND);
 	}
 
 	const newPosts = POSTS.map(currentPost => {
@@ -62,7 +64,7 @@ export const deletePost = (id: number) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
-		throw new Error("Post not found");
+		throw new Error(NOT_FOUND);
 	}
 
 	POSTS.splice(postIndex, 1);
