@@ -17,6 +17,9 @@ http:
       }
 
 runtime:
+  variables:
+    - name: postId
+      value: "40"
   scripts:
     - type: tests
       code: |-
@@ -31,3 +34,9 @@ runtime:
         test("Content is updated", function() {
           expect(res.body.content).to.equal("Updated Content");
         });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

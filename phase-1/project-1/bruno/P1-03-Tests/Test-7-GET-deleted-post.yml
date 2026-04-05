@@ -11,9 +11,18 @@ http:
       value: application/json
 
 runtime:
+  variables:
+    - name: postId
+      value: "1"
   scripts:
     - type: tests
       code: |-
-        test("Status is 500 (post not found)", function() {
-          expect(res.status).to.equal(500);
+        test("Status is 404(post not found)", function() {
+          expect(res.status).to.equal(404);
         });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

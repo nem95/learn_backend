@@ -17,6 +17,9 @@ http:
       }
 
 runtime:
+  variables:
+    - name: postId
+      value: "1"
   scripts:
     - type: tests
       code: |-
@@ -28,3 +31,9 @@ runtime:
           expect(res.body).to.have.property("errors");
           expect(res.body.errors).to.be.an("array");
         });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
