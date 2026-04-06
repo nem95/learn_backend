@@ -24,17 +24,23 @@ Ajouter les codes HTTP corrects pour chaque type de réponse. Les clients (et le
 
 ## Acceptance Criteria
 
-- [ ] `GET /posts` retourne 200 (OK)
-- [ ] `GET /posts/:id` (trouvé) retourne 200 (OK)
-- [ ] `GET /posts/:id` (pas trouvé) retourne 404 (Not Found)
-- [ ] `POST /posts` (succès) retourne 201 (Created)
-- [ ] `POST /posts` (invalid) retourne 400 (Bad Request)
-- [ ] `PATCH /posts/:id` (succès) retourne 200 (OK)
-- [ ] `PATCH /posts/:id` (invalid) retourne 400 (Bad Request)
-- [ ] `PATCH /posts/:id` (pas trouvé) retourne 404 (Not Found)
-- [ ] `DELETE /posts/:id` (succès) retourne 204 (No Content) ou 200
-- [ ] `DELETE /posts/:id` (pas trouvé) retourne 404 (Not Found)
-- [ ] Codes testables avec curl : `curl -w "%{http_code}\n"`
+- [x] `GET /posts` retourne 200 (OK)
+- [x] `GET /posts/:id` (trouvé) retourne 200 (OK)
+- [x] `GET /posts/:id` (pas trouvé) retourne 404 (Not Found)
+- [x] `POST /posts` (succès) retourne 201 (Created)
+- [x] `POST /posts` (invalid) retourne 400 (Bad Request)
+- [x] `PATCH /posts/:id` (succès) retourne 200 (OK)
+- [x] `PATCH /posts/:id` (invalid) retourne 400 (Bad Request)
+- [x] `PATCH /posts/:id` (pas trouvé) retourne 404 (Not Found)
+- [x] `DELETE /posts/:id` (succès) retourne 204 (No Content) ou 200
+- [x] `DELETE /posts/:id` (pas trouvé) retourne 404 (Not Found)
+- [x] Codes testables avec curl : `curl -w "%{http_code}\n"`
+
+## Validation de la code review
+
+✅ **VALIDÉ** - 2026-04-05
+
+Tous les codes HTTP sont correctement implémentés. Points d'apprentissage à explorer pour la prochaine itération : cohérence du nommage des variables (singulier/pluriel), expliciter les codes 200 par défaut pour la clarté, et réfléchir aux cas limites dans la gestion des erreurs (ordre de priorité des conditions).
 
 ---
 
