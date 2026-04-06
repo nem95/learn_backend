@@ -8,7 +8,7 @@ const postsRouter = express.Router();
 const catchError = (err: Error, code?: number) => {
 	const statusCode = code || 500;
 	const status = err.message === "NOT_FOUND" ? 404 : statusCode;
-	const message = err.message === "NOT_FOUND" ? "Post not found" : `Error just happend: ${err}`;
+	const message = err.message === "NOT_FOUND" ? "Post not found" : `Error just happened: ${err}`;
 
 	console.error(err);
 
@@ -47,7 +47,7 @@ postsRouter.post('/', validateBodySchema(CreatePostSchema) ,(req: Request, res: 
 		res.status(201).json(createPost);
 	} catch (error) {
 		const err = error instanceof Error ? error : new Error(String(error));
-		const { status, message } = catchError(err, 400 );
+		const { status, message } = catchError(err, 400);
 
 		res.status(status).json({ message })
 	}
@@ -62,24 +62,25 @@ postsRouter.patch('/:id', validateParamsSchema(IDSchema), validateBodySchema(Upd
 		res.json(updatedPost);
 	} catch (error) {
 		const err = error instanceof Error ? error : new Error(String(error));
-		const { status, message } = catchError(err, 400 );
+		const { status, message } = catchError(err, 400);
 
 		res.status(status).json({ message })
 	}
 });
 
 postsRouter.delete('/:id', validateParamsSchema(IDSchema), (req: Request, res: Response) => {
-const { id } = req.params;
+	const { id } = req.params;
 
 	try {
 		deletePost(Number(id))
 
-		res.status(204).json();
+		res.status(204).send();
 	} catch (error) {
 		const err = error instanceof Error ? error : new Error(String(error));
-		const { status, message } = catchError(err, 400 );
+		const { status, message } = catchError(err);
 
 		res.status(status).json({ message })
 	}
 });
+
 export { postsRouter };
