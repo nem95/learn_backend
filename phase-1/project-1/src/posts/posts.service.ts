@@ -1,11 +1,12 @@
 import { Post } from '../types';
+import { AppError } from '../utils/AppError';
 import { findPostIndex } from '../utils/posts';
 import { CreatePost, UpdatePost } from './posts.schema';
 
 export let POSTS: Post[] = [];
 
 let nextId = 1;
-const NOT_FOUND = "NOT_FOUND";
+const POST_NOT_FOUND = "Post not found";
 
 export const listPosts = () => {
 	return POSTS
@@ -18,7 +19,7 @@ export const getPost = (id: number) => {
 		return post;
 	}
 
-	throw new Error(NOT_FOUND);
+	throw new AppError(404, POST_NOT_FOUND);
 };
 
 export const addPost = (post: CreatePost) => {
@@ -39,7 +40,7 @@ export const updatePost = (id: number, post: UpdatePost) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
-		throw new Error(NOT_FOUND);
+		throw new AppError(404, POST_NOT_FOUND);
 	}
 
 	const newPosts = POSTS.map(currentPost => {
@@ -64,7 +65,7 @@ export const deletePost = (id: number) => {
 	const postIndex = findPostIndex(id);
 
 	if (postIndex === -1) {
-		throw new Error(NOT_FOUND);
+		throw new AppError(404, POST_NOT_FOUND);
 	}
 
 	POSTS.splice(postIndex, 1);
