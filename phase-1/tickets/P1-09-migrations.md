@@ -24,11 +24,11 @@ Exécuter les migrations Prisma pour créer les tables dans PostgreSQL. Les migr
 
 ## Acceptance Criteria
 
-- [ ] Dossier `prisma/migrations/` créé
-- [ ] Première migration exécutée : `npx prisma migrate dev --name init`
-- [ ] Fichier de migration SQL créé dans `prisma/migrations/[timestamp]_init/`
-- [ ] Tables `users`, `posts`, `comments` créées dans PostgreSQL
-- [ ] Prisma Client généré (`.prisma/client/`)
+- [x] Dossier `prisma/migrations/` créé
+- [x] Première migration exécutée : `npx prisma migrate dev --name init`
+- [x] Fichier de migration SQL créé dans `prisma/migrations/[timestamp]_init/`
+- [x] Tables `users`, `posts`, `comments` créées dans PostgreSQL
+- [x] Prisma Client généré (`.prisma/client/`)
 - [ ] `npx prisma studio` affiche les 3 tables vides
 - [ ] Migration peut être rejouée : `npx prisma migrate reset` (optionnel, pour test)
 
