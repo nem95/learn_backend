@@ -24,17 +24,17 @@ Refactoriser le service `posts.service.ts` pour utiliser Prisma au lieu du stock
 
 ## Acceptance Criteria
 
-- [ ] Service `posts.service.ts` utilise Prisma au lieu du tableau en mémoire
-- [ ] Méthode `getAll()` utilise `prisma.post.findMany()`
-- [ ] Méthode `getById(id)` utilise `prisma.post.findUnique()`
-- [ ] Méthode `create(data)` utilise `prisma.post.create()`
-- [ ] Méthode `update(id, data)` utilise `prisma.post.update()`
-- [ ] Méthode `delete(id)` utilise `prisma.post.delete()`
-- [ ] Erreurs gérées : `RecordNotFound` → throw `AppError(404)`
-- [ ] Les routes ne changent pas (interface reste la même)
-- [ ] Les tests d'intégration passent
-- [ ] `npm run start:dev` lance sans erreur
-- [ ] Les données persistent après redémarrage du serveur
+- [x] Service `posts.service.ts` utilise Prisma au lieu du tableau en mémoire
+- [x] Méthode `getAll()` utilise `prisma.post.findMany()`
+- [x] Méthode `getById(id)` utilise `prisma.post.findUnique()`
+- [x] Méthode `create(data)` utilise `prisma.post.create()`
+- [x] Méthode `update(id, data)` utilise `prisma.post.update()`
+- [x] Méthode `delete(id)` utilise `prisma.post.delete()`
+- [x] Erreurs gérées : `RecordNotFound` → throw `AppError(404)`
+- [x] Les routes ne changent pas (interface reste la même)
+- [x] Les tests d'intégration passent
+- [x] `npm run start:dev` lance sans erreur
+- [x] Les données persistent après redémarrage du serveur
 
 ---
 
