@@ -6,7 +6,7 @@
     "moduleResolution": "bundler",
     "target": "ES2023",
     "ignoreDeprecations": "6.0",
-    "types": [],
+    "types": ["node"],
 
     "sourceMap": true,
     "declaration": true,
