@@ -1,19 +1,21 @@
-import { Post } from '../types';
+import { Prisma } from '../../generated/prisma/client';
+import { prisma } from '../database/prisma.service';
 import { AppError } from '../utils/AppError';
-import { findPostIndex } from '../utils/posts';
-import { CreatePost, UpdatePost } from './posts.schema';
+import { CreatePost, UpdatePost} from './posts.schema';
 
-export let POSTS: Post[] = [];
-
-let nextId = 1;
 const POST_NOT_FOUND = "Post not found";
 
-export const listPosts = () => {
-	return POSTS
+export const listPosts = async () => {
+	const posts = await prisma.post.findMany();
+
+	return posts
 };
 
-export const getPost = (id: number) => {
-	const post = POSTS.find(post => post.id === id)
+export const getPost = async (id: number) => {
+	const post = await prisma.post.findUnique({
+		where: { id },
+		include: { author: true }
+	});
 
 	if (post) {
 		return post;
@@ -22,52 +24,41 @@ export const getPost = (id: number) => {
 	throw new AppError(404, POST_NOT_FOUND);
 };
 
-export const addPost = (post: CreatePost) => {
-	const newPost = {
-		id: nextId,
-		title: post.title,
-		content: post.content,
-		createdAt: new Date()
-	};
+export const addPost = async (post: CreatePost, userId: number) => {
+	const createdPost = await prisma.post.create({
+		data: {
+			...post,
+			authorId: userId,
+		},
+	});
 
-	POSTS.push(newPost);
-
-	nextId = nextId + 1;
-	return newPost;
+	
+	return createdPost;
 };
 
-export const updatePost = (id: number, post: UpdatePost) => {
-	const postIndex = findPostIndex(id);
-
-	if (postIndex === -1) {
-		throw new AppError(404, POST_NOT_FOUND);
-	}
-
-	const newPosts = POSTS.map(currentPost => {
-		if (currentPost.id === id) {
-			if (post.title) {
-				currentPost.title = post.title;
-			}
-			if (post.content) {
-				currentPost.content = post.content;
-			}
-			return { ...currentPost };
-		} else {
-			return currentPost;
+export const updatePost = async (id: number, post: UpdatePost) => {
+	try {
+		return await prisma.post.update({
+			where: { id },
+			data: post,
+		});
+	} catch (e) {
+		if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
+			throw new AppError(404, POST_NOT_FOUND);
 		}
-	})
-
-	POSTS = newPosts;
-	return POSTS[postIndex];
+		throw e;
+	}
 };
 
-export const deletePost = (id: number) => {
-	const postIndex = findPostIndex(id);
-
-	if (postIndex === -1) {
-		throw new AppError(404, POST_NOT_FOUND);
+export const deletePost = async (id: number) => {
+	try {
+		return await prisma.post.delete({
+			where: { id },
+		});
+	} catch (e) {
+		if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
+			throw new AppError(404, POST_NOT_FOUND);
+		}
+		throw e;
 	}
-
-	POSTS.splice(postIndex, 1);
-	return POSTS;
 };
