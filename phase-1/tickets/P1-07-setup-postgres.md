@@ -24,16 +24,16 @@ Installer PostgreSQL en Docker et configurer Prisma pour communiquer avec la bas
 
 ## Acceptance Criteria
 
-- [ ] PostgreSQL lancé en Docker (`docker run ...`)
-- [ ] `.env` créé avec `DATABASE_URL`
-- [ ] Prisma installé : `npm install @prisma/client` et `npm install -D prisma`
-- [ ] `npx prisma init` lancé (crée `prisma/schema.prisma`)
-- [ ] `prisma/schema.prisma` configuré avec PostgreSQL
-- [ ] Fichier `src/database/prisma.service.ts` créé (wrapper Prisma)
-- [ ] Service Prisma injecté dans `app.ts`
-- [ ] Test de connexion : `npx prisma db push` lance sans erreur
-- [ ] `npx prisma studio` ouvre l'interface web (optionnel mais sympa)
-- [ ] `.env` ajouté au `.gitignore`
+- [x] PostgreSQL lancé en Docker (`docker run ...`)
+- [x] `.env` créé avec `DATABASE_URL`
+- [x] Prisma installé : `npm install @prisma/client` et `npm install -D prisma`
+- [x] `npx prisma init` lancé (crée `prisma/schema.prisma`)
+- [x] `prisma/schema.prisma` configuré avec PostgreSQL
+- [x] Fichier `src/database/prisma.service.ts` créé (wrapper Prisma)
+- [x] Service Prisma injecté dans `app.ts`
+- [x] Test de connexion : `npx prisma db push` lance sans erreur
+- [x] `npx prisma studio` ouvre l'interface web (optionnel mais sympa)
+- [x] `.env` ajouté au `.gitignore`
 
 ---
 
