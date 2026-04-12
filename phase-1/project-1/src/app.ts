@@ -1,6 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 import { postsRouter } from './posts/posts.router';
 import { AppError } from './utils/AppError';
+import { prisma } from './database/prisma.service';
+
 const app: Application = express();
 
 const myLogger = function (req: Request, res: Response, next: NextFunction) {
