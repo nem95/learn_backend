@@ -25,15 +25,15 @@ Créer le schema Prisma avec les modèles User, Post, et Comment. Définir les r
 
 ## Acceptance Criteria
 
-- [ ] Modèle `User` créé avec champs : id, email, name
-- [ ] Modèle `Post` créé avec champs : id, title, content, createdAt, authorId
-- [ ] Modèle `Comment` créé avec champs : id, text, createdAt, postId
-- [ ] Relations : User.posts (1-to-many) et Post.comments (1-to-many)
-- [ ] `email` unique sur User
-- [ ] `id` auto-incrémenté pour toutes les tables
-- [ ] `createdAt` defaults à `now()`
-- [ ] Foreign keys correctes : Post.authorId → User.id, Comment.postId → Post.id
-- [ ] Schema valide : `npx prisma validate` pas d'erreurs
+- [x] Modèle `User` créé avec champs : id, email, name
+- [x] Modèle `Post` créé avec champs : id, title, content, createdAt, authorId
+- [x] Modèle `Comment` créé avec champs : id, text, createdAt, postId
+- [x] Relations : User.posts (1-to-many) et Post.comments (1-to-many)
+- [x] `email` unique sur User
+- [x] `id` auto-incrémenté pour toutes les tables
+- [x] `createdAt` defaults à `now()`
+- [x] Foreign keys correctes : Post.authorId → User.id, Comment.postId → Post.id
+- [x] Schema valide : `npx prisma validate` pas d'erreurs
 
 ---
 
@@ -114,10 +114,10 @@ npx prisma db push --dry-run
 
 ## Checklist
 
-- [ ] Tous les modèles présents
-- [ ] Tous les champs présents
-- [ ] Relations correctes
-- [ ] `@unique` sur email
-- [ ] `@id @default(autoincrement())` sur tous les id
-- [ ] `@default(now())` sur createdAt
-- [ ] Schema valide
+- [x] Tous les modèles présents
+- [x] Tous les champs présents
+- [x] Relations correctes
+- [x] `@unique` sur email
+- [x] `@id @default(autoincrement())` sur tous les id
+- [x] `@default(now())` sur createdAt
+- [x] Schema valide
