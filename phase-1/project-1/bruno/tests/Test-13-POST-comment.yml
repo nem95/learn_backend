@@ -1,0 +1,47 @@
+info:
+  name: Test 13 - POST /posts/:id/comments (créer commentaire)
+  type: http
+  seq: 14
+
+http:
+  method: POST
+  url: "{{baseUrl}}/posts/{{postId}}/comments"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "text": "Great post!"
+      }
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 201 (Created)", function() {
+          expect(res.status).to.equal(201);
+        });
+
+        test("Comment has id", function() {
+          expect(res.body).to.have.property("id");
+        });
+
+        test("Comment has correct text", function() {
+          expect(res.body.text).to.equal("Great post!");
+        });
+
+        test("Comment has postId", function() {
+          expect(res.body).to.have.property("postId");
+        });
+
+        test("Comment has createdAt", function() {
+          expect(res.body).to.have.property("createdAt");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

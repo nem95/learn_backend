@@ -17,9 +17,6 @@ http:
       }
 
 runtime:
-  variables:
-    - name: postId
-      value: "1"
   scripts:
     - type: tests
       code: |-

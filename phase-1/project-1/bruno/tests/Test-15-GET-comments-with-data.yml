@@ -1,0 +1,57 @@
+info:
+  name: Test 15 - GET /posts/:id/comments (avec commentaires)
+  type: http
+  seq: 16
+
+http:
+  method: GET
+  url: "{{baseUrl}}/posts/{{postId}}/comments"
+  headers:
+    - name: Content-Type
+      value: application/json
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 200", function() {
+          expect(res.status).to.equal(200);
+        });
+
+        test("Response is an array", function() {
+          expect(res.body).to.be.an("array");
+        });
+
+        test("Array has 2 comments", function() {
+          expect(res.body.length).to.equal(2);
+        });
+
+        test("Each comment has id", function() {
+          res.body.forEach(function(comment) {
+            expect(comment).to.have.property("id");
+          });
+        });
+
+        test("Each comment has text", function() {
+          res.body.forEach(function(comment) {
+            expect(comment).to.have.property("text");
+          });
+        });
+
+        test("Each comment has createdAt", function() {
+          res.body.forEach(function(comment) {
+            expect(comment).to.have.property("createdAt");
+          });
+        });
+
+        test("Comments ordered by recent first", function() {
+          const first = new Date(res.body[0].createdAt).getTime();
+          const second = new Date(res.body[1].createdAt).getTime();
+          expect(first).to.be.at.least(second);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

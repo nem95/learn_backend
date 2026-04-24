@@ -1,14 +1,20 @@
 info:
-  name: Test 1 - GET /posts/1 (valide)
+  name: Test 4 - PATCH /posts/1 (modifier content)
   type: http
-  seq: 2
+  seq: 5
 
 http:
-  method: GET
+  method: PATCH
   url: "{{baseUrl}}/posts/{{postId}}"
   headers:
     - name: Content-Type
       value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "content": "Updated Content"
+      }
 
 runtime:
   variables:
@@ -21,16 +27,12 @@ runtime:
           expect(res.status).to.equal(200);
         });
 
-        test("Post has correct title", function() {
-          expect(res.body.title).to.equal("Hello");
+        test("Title is still updated", function() {
+          expect(res.body.title).to.equal("Updated Title");
         });
 
-        test("Post has correct content", function() {
-          expect(res.body.content).to.equal("World");
-        });
-
-        test("Post has id", function() {
-          expect(res.body).to.have.property("id");
+        test("Content is updated", function() {
+          expect(res.body.content).to.equal("Updated Content");
         });
 
 settings:
