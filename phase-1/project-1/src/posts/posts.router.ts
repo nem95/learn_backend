@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import { addPost, deletePost, getPost, listPosts, updatePost } from './posts.service';
 import { validateBodySchema, validateParamsSchema } from '../utils/validateSchema';
 import { CreatePostSchema, IDSchema, UpdatePostSchema } from './posts.schema';
+import { commentRouter } from '../comments/comments.router';
 
 const postsRouter = express.Router();
 
@@ -66,5 +67,7 @@ postsRouter.delete('/:id', validateParamsSchema(IDSchema), async(req: Request, r
 		next(error)
 	}
 });
+
+postsRouter.use('/:id/comments', commentRouter);
 
 export { postsRouter };
